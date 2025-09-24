@@ -85,24 +85,32 @@ Kayaknya dari yapping ini sebenarnya aku problematik ya? apa avoidant? moh idk, 
 cocok berteman. Jujur kaget aku bisa ada sirkel di SMA,, i never picture myself living this kind of shs.
 sekali lagi, makassih udah nerima aku sebagai teman. i really deep down appreciate. </p>
 
-      <p>Udah ah yapping nya, i sekarang mau say thanks.
-copi.. makasi yaa udah nemenin akuu, aku kadang terharu bgt kalo km meluk aku..
-Aku jarang banget dipeluk,, gak trbiasa dipeluk tapi sama km sering banget dipelukkk. likeit.
-km juga ekspresif banget sama semua hal. selalu bisa mengespresikan emosi km. hhe. Maaf ya aku sering cursing.
-km tuu a good listener and responder. maybe not a good advisor for me but u really help me out.
-Jujur gatau mau ngomong apa lagi selain i suka u peluk. tpi jgn sering sering? i freak out nanti
-Makasi ya cop udah bacain i yapping. cyank loveu.💙</p>
+      <p>Udah ah yapping nya, i sekarang mau say thanks. copi.. makasi yaa udah nemenin akuu, aku kadang terharu bgt kalo km meluk aku.. Aku jarang banget dipeluk,, gak trbiasa dipeluk tapi sama km sering banget dipelukkk. likeit. km juga ekspresif banget sama semua hal. selalu bisa mengespresikan emosi km. hhe. Maaf ya aku sering cursing.. km tuu a good listener and responder. maybe not a good advisor for me but u really help me out.. Jujur gatau mau ngomong apa lagi selain i suka u peluk. tpi jgn sering sering? i freak out nanti. Makasi ya cop udah bacain i yapping. cyank loveu.💙</p>
     </div>
-    <button onclick="playMusic()">🎶 Putar Musik</button>
-    <!-- file lagu harus ada di repo -->
-    <audio id="bg-music" src="lagu.mp3" preload="auto"></audio>
-  </div>
+   <button id="music-btn" onclick="playMusic()">▶️ Putar Musik</button>
 
-  <script>
-    function playMusic() {
-      const music = document.getElementById("bg-music");
-      music.play();
+<audio id="bg-music" src="lagu.mp3" preload="auto"></audio>
+
+<script>
+  function playMusic() {
+    const music = document.getElementById("bg-music");
+    const btn = document.getElementById("music-btn");
+
+    if (music.paused) {
+      music.play()
+        .then(() => {
+          btn.textContent = "⏸️ Jeda Musik";
+        })
+        .catch(error => {
+          console.log("Gagal memutar:", error);
+          alert("Lagu tidak bisa diputar. Coba cek format atau path file.");
+        });
+    } else {
+      music.pause();
+      btn.textContent = "▶️ Putar Musik";
     }
-  </script>
+  }
+</script>
 </body>
 </html>
+
