@@ -66,37 +66,54 @@ First of all, i mau makasih banget udah nemenin i sampai i udah 7belas taun ;p I
 Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd suka aja. sampai tangan nya berbekas trus aku dimarahin gurunya.. waktu aku sd aku ngerasa gak ada teman, padahal ada aja kok yang nemenin, tapi mereka awalnya bertiga trus yang satu gak ikut nemenin aku soalnya inya ga suka aku. jadi inya ngerasa klo aku ngambil teman inya,, trus inya ngadu ke mamahnya klo inya gak ditemenin sekelasan dan itu gara gara aku yang nyuruh. trus mamahnya lapor ke guru trus kami ber4 dipanggil ke ruang kepsek.. jujur alay? tapi yaudah terus jadinya kami berteman ber4 sampai sekarang tapi gak deket deket banget sih...Waktu aku smp, aku ga ada temen yang setemenan itu juga sih, kayak temenan biasa ae Aku ada kok temen, kadang besirkel kadang berdua kadang bertiga dan itupun beda beda orangnya, aku kayak gabisa berteman sama itu itu aja, ngomong sama dia aja. jadinya aku sering 'ngundurin diri' dari pertemanan Kayaknya dari yapping ini sebenarnya aku problematik ya? apa avoidant? moh idk, tpi aku serasa selalu gak cocok berteman. Jujur kaget aku bisa ada sirkel di SMA,, i never picture myself living this kind of shs. sekali lagi, makassih udah nerima aku sebagai teman. i really deep down appreciate. </p>
       <p>Udah ah yapping nya, i sekarang mau say thanks. copi.. makasi yaa udah nemenin akuu, aku kadang terharu bgt kalo km meluk aku.. Aku jarang banget dipeluk,, gak trbiasa dipeluk tapi sama km sering banget dipelukkk. likeit. km juga ekspresif banget sama semua hal. selalu bisa mengespresikan emosi km. hhe. Maaf ya aku sering cursing.. km tuu a good listener and responder. maybe not a good advisor for me but u really help me out.. Jujur gatau mau ngomong apa lagi selain i suka u peluk. tpi jgn sering sering? i freak out nanti. Makasi ya cop udah bacain i yapping. cyank loveu.💙</p>
     </div>
-<!-- Tombol untuk menampilkan/menyembunyikan musik -->
-<button id="music-btn" onclick="toggleMusic()">▶️ Putar Musik</button>
 
-<!-- Embed YouTube (Hindia - Rumah ke Rumah) -->
-<div id="music-player" style="display:none; margin-top: 20px;">
-  <iframe id="yt-player" width="0" height="0" 
-    src="https://www.youtube.com/embed/n5R0kXwwp-w?autoplay=1&loop=1&playlist=n5R0kXwwp-w" 
-    frameborder="0" 
-    allow="autoplay; encrypted-media">
-  </iframe>
-</div>
+    <button id="music-btn" onclick="toggleMusic()">▶️ Putar Musik</button>
 
-<script>
-  function toggleMusic() {
-    const player = document.getElementById("music-player");
-    const btn = document.getElementById("music-btn");
+ 
+    <div id="music-player" style="display:none; margin-top:20px;">
+      <div id="yt-player"></div>
+    </div>
+  </div>
 
-    if (player.style.display === "none") {
-      player.style.display = "block";
-      btn.textContent = "⏸️ Jeda Musik";
-    } else {
-      player.style.display = "none";
-      btn.textContent = "▶️ Putar Musik";
+  
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let player;
+    let isPlaying = false;
 
-      // Stop lagu dengan reload iframe
-      document.getElementById("yt-player").src = document.getElementById("yt-player").src;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('yt-player', {
+        height: '0',
+        width: '0',
+        videoId: 'n5R0kXwwp-w', // ID video Hindia - Rumah ke Rumah
+        playerVars: {
+          autoplay: 0,
+          loop: 1,
+          playlist: 'n5R0kXwwp-w'
+        }
+      });
     }
-  }
-</script>
+
+    function toggleMusic() {
+      const btn = document.getElementById("music-btn");
+      const playerBox = document.getElementById("music-player");
+
+      if (!isPlaying) {
+        playerBox.style.display = "block"; // aktifkan player
+        player.playVideo();
+        btn.textContent = "⏸️ Jeda Musik";
+        isPlaying = true;
+      } else {
+        player.pauseVideo();
+        btn.textContent = "▶️ Putar Musik";
+        isPlaying = false;
+      }
+    }
+  </script>
 </body>
 </html>
+
+
 
 
 
