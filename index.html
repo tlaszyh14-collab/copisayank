@@ -69,37 +69,35 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
 
     <button id="music-btn" onclick="toggleMusic()">▶️ Putar Musik</button>
 
- 
-    <div id="music-player" style="display:none; margin-top:20px;">
+    <!-- Tempat player YouTube -->
+    <div id="music-player" style="margin-top:20px;">
       <div id="yt-player"></div>
     </div>
   </div>
 
-  
+  <!-- Script YouTube API -->
   <script src="https://www.youtube.com/iframe_api"></script>
   <script>
     let player;
     let isPlaying = false;
 
+    // Buat player YT setelah API siap
     function onYouTubeIframeAPIReady() {
       player = new YT.Player('yt-player', {
         height: '0',
         width: '0',
-        videoId: 'n5R0kXwwp-w', // ID video Hindia - Rumah ke Rumah
+        videoId: 'sXfDLuzSY-Y', // ID video instrumen Rumah ke Rumah
         playerVars: {
-          autoplay: 0,
+          autoplay: 0, // tidak auto play (biar tidak silent)
           loop: 1,
-          playlist: 'n5R0kXwwp-w'
+          playlist: 'sXfDLuzSY-Y'
         }
       });
     }
 
     function toggleMusic() {
       const btn = document.getElementById("music-btn");
-      const playerBox = document.getElementById("music-player");
-
       if (!isPlaying) {
-        playerBox.style.display = "block"; // aktifkan player
         player.playVideo();
         btn.textContent = "⏸️ Jeda Musik";
         isPlaying = true;
@@ -112,6 +110,7 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
   </script>
 </body>
 </html>
+
 
 
 
