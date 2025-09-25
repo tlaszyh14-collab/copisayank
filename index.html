@@ -11,6 +11,7 @@
       margin: 0;
       padding: 0;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
@@ -36,23 +37,33 @@
       white-space: pre-line;
       word-wrap: break-word;
     }
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
+    /* Tombol musik di luar card */
+    #music-btn {
+      margin-top: 25px;
+      padding: 14px 28px;
       border: none;
-      border-radius: 30px;
-      background: #5a7bd8;
+      border-radius: 40px;
+      background: #ff6b81;
       color: white;
-      font-size: 15px;
+      font-size: 18px;
+      font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      animation: pulse 1.5s infinite;
     }
-    button:hover {
-      background: #4865b2;
+    #music-btn:hover {
+      background: #e4546c;
+      transform: scale(1.05);
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
@@ -67,12 +78,12 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
       <p>Udah ah yapping nya, i sekarang mau say thanks. copi.. makasi yaa udah nemenin akuu, aku kadang terharu bgt kalo km meluk aku.. Aku jarang banget dipeluk,, gak trbiasa dipeluk tapi sama km sering banget dipelukkk. likeit. km juga ekspresif banget sama semua hal. selalu bisa mengespresikan emosi km. hhe. Maaf ya aku sering cursing.. km tuu a good listener and responder. maybe not a good advisor for me but u really help me out.. Jujur gatau mau ngomong apa lagi selain i suka u peluk. tpi jgn sering sering? i freak out nanti. Makasi ya cop udah bacain i yapping. cyank loveu.💙</p>
     </div>
 
-    <button id="music-btn" onclick="toggleMusic()">▶️ Putar Musik</button>
+   <!-- Tombol musik di luar card -->
+  <button id="music-btn" onclick="toggleMusic()">▶️ Putar Musik</button>
 
-    <!-- Tempat player YouTube -->
-    <div id="music-player" style="margin-top:20px;">
-      <div id="yt-player"></div>
-    </div>
+  <!-- Tempat player YouTube -->
+  <div id="music-player" style="margin-top:20px;">
+    <div id="yt-player"></div>
   </div>
 
   <!-- Script YouTube API -->
@@ -88,7 +99,7 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
         width: '0',
         videoId: 'sXfDLuzSY-Y', // ID video instrumen Rumah ke Rumah
         playerVars: {
-          autoplay: 0, // tidak auto play (biar tidak silent)
+          autoplay: 0, 
           loop: 1,
           playlist: 'sXfDLuzSY-Y'
         }
@@ -110,6 +121,7 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
   </script>
 </body>
 </html>
+
 
 
 
