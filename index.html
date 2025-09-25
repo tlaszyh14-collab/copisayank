@@ -5,69 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Untukmu 💌</title>
   <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(to bottom right, #a7d8ff, #d3cfff);
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.8);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      max-width: 600px;
-      text-align: center;
-      animation: fadeIn 1.5s ease;
-    }
-    h1 {
-      color: #2d4373;
-      margin-bottom: 20px;
-    }
-    .message {
-      text-align: left;
-      color: #1a1a1a;
-      font-size: 16px;
-      line-height: 1.8;
-      white-space: pre-line;
-      word-wrap: break-word;
-    }
-    /* Tombol musik di luar card */
-    #music-btn {
-      margin-top: 25px;
-      padding: 14px 28px;
-      border: none;
-      border-radius: 40px;
-      background: #ff6b81;
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      animation: pulse 1.5s infinite;
-    }
-    #music-btn:hover {
-      background: #e4546c;
-      transform: scale(1.05);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-      100% { transform: scale(1); }
-    }
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(to bottom right, #a7d8ff, #d3cfff);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative; /* penting biar absolute bisa dipakai */
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  max-width: 600px;
+  text-align: center;
+  animation: fadeIn 1.5s ease;
+}
+
+#music-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px; /* kalau mau kiri ganti jadi left: 20px; */
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  background: #ff6b81;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  animation: pulse 1.5s infinite;
+}
+
+#music-btn:hover {
+  background: #e4546c;
+  transform: scale(1.05);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
   </style>
 </head>
 <body>
+  <!-- Tombol musik di pojok -->
+  <button id="music-btn" onclick="toggleMusic()">▶️ Putar Musik</button>
+  <div id="music-player">
+    <div id="yt-player"></div>
+  </div>
+
+  <!-- Card tetap di tengah -->
   <div class="card">
     <h1>Untukmu 💌</h1>
     <div class="message">
@@ -89,19 +86,18 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
   </div>
 
   <!-- Script YouTube API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
+ <script src="https://www.youtube.com/iframe_api"></script>
   <script>
     let player;
     let isPlaying = false;
 
-    // Buat player YT setelah API siap
     function onYouTubeIframeAPIReady() {
       player = new YT.Player('yt-player', {
         height: '0',
         width: '0',
         videoId: 'sXfDLuzSY-Y', // ID video instrumen Rumah ke Rumah
         playerVars: {
-          autoplay: 0, 
+          autoplay: 0,
           loop: 1,
           playlist: 'sXfDLuzSY-Y'
         }
@@ -123,6 +119,7 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
   </script>
 </body>
 </html>
+
 
 
 
