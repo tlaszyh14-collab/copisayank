@@ -130,35 +130,45 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
    </div>
   </div>
   <!-- Player YouTube tersembunyi -->
-  <div id="yt-player"></div>
+<div id="yt-player"></div>
 
-  <!-- Script YouTube API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <script>
-    let player;
-    let isPlaying = false;
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  let player;
+  let isPlaying = false;
 
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('yt-player', {
-        height: '0',
-        width: '0',
-        videoId: 'sXfDLuzSY-Y', // ganti ID lagu YouTube
-        playerVars: { autoplay: 0, loop: 1, playlist: 'sXfDLuzSY-Y' }
-      });
-    }
-
-    function toggleMusic() {
-      const btn = document.getElementById("music-btn");
-      if (!isPlaying) {
-        player.playVideo();
-        btn.textContent = "⏸️ Jeda Musik";
-        isPlaying = true;
-      } else {
-        player.pauseVideo();
-        btn.textContent = "▶️ Putar Musik";
-        isPlaying = false;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('yt-player', {
+      height: '0',
+      width: '0',
+      videoId: 'sXfDLuzSY-Y', // ID video
+      playerVars: { 
+        autoplay: 0, 
+        loop: 1, 
+        playlist: 'sXfDLuzSY-Y',
+        modestbranding: 1
+      },
+      events: {
+        onReady: (event) => {
+          console.log("YouTube Player siap 🎵");
+        }
       }
+    });
+  }
+
+  function toggleMusic() {
+    const btn = document.getElementById("music-btn");
+    if (!isPlaying) {
+      player.playVideo();   // <-- tombol ini yang memicu audio
+      btn.textContent = "⏸️ Jeda Musik";
+      isPlaying = true;
+    } else {
+      player.pauseVideo();
+      btn.textContent = "▶️ Putar Musik";
+      isPlaying = false;
     }
+  }
+</script>
 
     // 🌸 Script animasi kelopak gugur
     const colors = ["pink", "violet", "yellow", "lightgreen"];
@@ -179,3 +189,4 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
   </script>
 </body>
 </html>
+
