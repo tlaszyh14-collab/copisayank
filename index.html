@@ -72,16 +72,31 @@
       100% { transform: scale(1); }
     }
 
-    /* gaya kelopak sakura */
+    /* 🌸 gaya kelopak sakura */
     .petal {
       position: absolute;
-      width: 25px;
-      height: 30px;
-      background-color: pink;
-      border-radius: 60% 60% 80% 80% / 100% 100% 60% 60%;
+      width: 35px;
+      height: 40px;
+      background: radial-gradient(circle at top, #fff 5%, pink 60%, #ff99cc 100%);
+      border-radius: 50% 50% 70% 70% / 60% 60% 40% 40%;
       opacity: 0.9;
       pointer-events: none;
       animation: fall linear forwards;
+      transform-origin: center;
+    }
+
+    /* belahan tengah kelopak */
+    .petal::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      background: inherit;
+      border-radius: 50% 50% 70% 70% / 60% 60% 40% 40%;
+      transform: rotate(-25deg) translateX(-50%);
+      opacity: 0.9;
     }
 
     @keyframes fall {
@@ -107,14 +122,13 @@
   <div class="card">
     <h1>Untukmu 💌</h1>
     <div class="message">
-      <p>Alow, hhe, i bingung sih mau ngetik apa...
+     <p>Alow, hhe, i bingung sih mau ngetik apa...
 First of all, i mau makasih banget udah nemenin i sampai i udah 7belas taun ;p I mau cerita ajadeh dulyu, i bikin ini buat cerita dan bilang thanks ajasih.. soalnya, kalo i ngomong langsung i takut gagap, hhe. Basic dulu deh xixi. Aku sebenarnya, prefer dipanggil tasya sih.. Suka aja dipanggil gitu, terus ak bingung juga suka warna apa,, pilih biru krna pick random ;p Aku suka mtk pake banget, cinta? syank? idaman aku? hhe. Dulu aku ngerjain mtk juga pusing kok. Aku milih buat rajin mtk juga.. supaya keren. beneran. maf klo alay npd kampung tpi ak ngerjain mtk beneran buat impress orang orang.. soalnya klo aku ngomong tentang mtk aku ngerasa diliat didengar gt nah... soalnya klo dirumah sering ngga didenger, hhe. kadang klo aku ngomogng pun gk kedengeran, even when aku teriak. hhe, makasi udah dengerin i yapping mtk. i suka klo km nanyain mtk, lovit.</p>
       <p>Udah yapping mtk nya, i mau cerita slice of life i selama 17 taun.
 Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd suka aja. sampai tangan nya berbekas trus aku dimarahin gurunya.. waktu aku sd aku ngerasa gak ada teman, padahal ada aja kok yang nemenin, tapi mereka awalnya bertiga trus yang satu gak ikut nemenin aku soalnya inya ga suka aku. jadi inya ngerasa klo aku ngambil teman inya,, trus inya ngadu ke mamahnya klo inya gak ditemenin sekelasan dan itu gara gara aku yang nyuruh. trus mamahnya lapor ke guru trus kami ber4 dipanggil ke ruang kepsek.. jujur alay? tapi yaudah terus jadinya kami berteman ber4 sampai sekarang tapi gak deket deket banget sih...Waktu aku smp, aku ga ada temen yang setemenan itu juga sih, kayak temenan biasa ae Aku ada kok temen, kadang besirkel kadang berdua kadang bertiga dan itupun beda beda orangnya, aku kayak gabisa berteman sama itu itu aja, ngomong sama dia aja. jadinya aku sering 'ngundurin diri' dari pertemanan Kayaknya dari yapping ini sebenarnya aku problematik ya? apa avoidant? moh idk, tpi aku serasa selalu gak cocok berteman. Jujur kaget aku bisa ada sirkel di SMA,, i never picture myself living this kind of shs. sekali lagi, makassih udah nerima aku sebagai teman. i really deep down appreciate. </p>
       <p>Udah ah yapping nya, i sekarang mau say thanks. copi.. makasi yaa udah nemenin akuu, aku kadang terharu bgt kalo km meluk aku.. Aku jarang banget dipeluk,, gak trbiasa dipeluk tapi sama km sering banget dipelukkk. likeit. km juga ekspresif banget sama semua hal. selalu bisa mengespresikan emosi km. hhe. Maaf ya aku sering cursing.. km tuu a good listener and responder. maybe not a good advisor for me but u really help me out.. Jujur gatau mau ngomong apa lagi selain i suka u peluk. tpi jgn sering sering? i freak out nanti. Makasi ya cop udah bacain i yapping. cyank loveu.💙</p>
    </div>
   </div>
-
   <!-- Player YouTube tersembunyi -->
   <div id="yt-player"></div>
 
@@ -128,7 +142,7 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
       player = new YT.Player('yt-player', {
         height: '0',
         width: '0',
-        videoId: 'sXfDLuzSY-Y',
+        videoId: 'sXfDLuzSY-Y', // ganti ID lagu YouTube
         playerVars: { autoplay: 0, loop: 1, playlist: 'sXfDLuzSY-Y' }
       });
     }
@@ -155,7 +169,6 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
       petal.classList.add("petal");
       petal.style.left = Math.random() * 100 + "vw";
       petal.style.animationDuration = 6 + Math.random() * 5 + "s";
-      petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
       petal.style.transform = `rotate(${Math.random() * 360}deg) scale(${0.8 + Math.random()*1.2})`;
       container.appendChild(petal);
 
