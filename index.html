@@ -10,12 +10,11 @@
       background: linear-gradient(to bottom right, #a7d8ff, #d3cfff);
       margin: 0;
       padding: 0;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
       position: relative;
-      overflow: hidden;
     }
 
     /* layer bunga gugur */
@@ -25,7 +24,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 1; /* di bawah card */
+      z-index: 1;
       pointer-events: none;
       overflow: hidden;
     }
@@ -36,6 +35,8 @@
       border-radius: 20px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
       max-width: 600px;
+      max-height: 80vh;    /* ✨ biar bisa scroll */
+      overflow-y: auto;    /* ✨ scroll hanya di card */
       text-align: center;
       animation: fadeIn 1.5s ease;
       z-index: 10;
@@ -74,11 +75,11 @@
     /* gaya kelopak sakura */
     .petal {
       position: absolute;
-      width: 18px;
-      height: 24px;
+      width: 25px;
+      height: 30px;
       background-color: pink;
-      border-radius: 70% 70% 100% 100% / 100% 100% 70% 70%;
-      opacity: 0.85;
+      border-radius: 60% 60% 80% 80% / 100% 100% 60% 60%;
+      opacity: 0.9;
       pointer-events: none;
       animation: fall linear forwards;
     }
@@ -114,7 +115,7 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
    </div>
   </div>
 
- <!-- Player YouTube tersembunyi -->
+  <!-- Player YouTube tersembunyi -->
   <div id="yt-player"></div>
 
   <!-- Script YouTube API -->
@@ -136,7 +137,6 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
       const btn = document.getElementById("music-btn");
       if (!isPlaying) {
         player.playVideo();
-        player.unMute();  // ⬅️ ini yang penting
         btn.textContent = "⏸️ Jeda Musik";
         isPlaying = true;
       } else {
@@ -146,33 +146,23 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
       }
     }
 
-
     // 🌸 Script animasi kelopak gugur
     const colors = ["pink", "violet", "yellow", "lightgreen"];
     const container = document.getElementById("petal-container");
 
-function createPetal() {
-  const petal = document.createElement("div");
-  petal.classList.add("petal");
-  petal.style.left = Math.random() * 100 + "vw";
-  petal.style.animationDuration = 6 + Math.random() * 5 + "s";
-  petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-  petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+    function createPetal() {
+      const petal = document.createElement("div");
+      petal.classList.add("petal");
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.animationDuration = 6 + Math.random() * 5 + "s";
+      petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      petal.style.transform = `rotate(${Math.random() * 360}deg) scale(${0.8 + Math.random()*1.2})`;
+      container.appendChild(petal);
 
-  // 🌸 ukuran random
-  const size = 20 + Math.random() * 30; // antara 20px - 50px
-  petal.style.width = size + "px";
-  petal.style.height = size * 1.3 + "px"; // biar agak lonjong
+      setTimeout(() => { petal.remove(); }, 12000);
+    }
 
-  container.appendChild(petal);
-
-  setTimeout(() => { petal.remove(); }, 12000);
-}
-
-
-    setInterval(createPetal, 400); // tiap 0.4 detik muncul kelopak baru
+    setInterval(createPetal, 400);
   </script>
 </body>
 </html>
-
-
