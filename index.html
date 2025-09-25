@@ -14,23 +14,38 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      position: relative; /* penting biar absolute bisa dipakai */
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* layer bunga gugur */
+    .petal-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1; /* di bawah card */
+      pointer-events: none;
+      overflow: hidden;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       padding: 30px;
       border-radius: 20px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
       max-width: 600px;
       text-align: center;
       animation: fadeIn 1.5s ease;
+      z-index: 10;
+      position: relative;
     }
 
     #music-btn {
       position: absolute;
       top: 20px;
-      right: 20px; /* kalau mau kiri: ganti jadi left:20px */
+      right: 20px;
       padding: 12px 24px;
       border: none;
       border-radius: 30px;
@@ -42,6 +57,7 @@
       transition: 0.3s;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
       animation: pulse 1.5s infinite;
+      z-index: 20;
     }
 
     #music-btn:hover {
@@ -54,10 +70,36 @@
       50% { transform: scale(1.08); }
       100% { transform: scale(1); }
     }
+
+    /* gaya kelopak sakura */
+    .petal {
+      position: absolute;
+      width: 18px;
+      height: 24px;
+      background-color: pink;
+      border-radius: 70% 70% 100% 100% / 100% 100% 70% 70%;
+      opacity: 0.85;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Tombol musik di pojok -->
+  <!-- Layer bunga -->
+  <div class="petal-container" id="petal-container"></div>
+
+  <!-- Tombol musik -->
   <button id="music-btn" onclick="toggleMusic()">▶️ Putar Musik</button>
 
   <!-- Card tetap di tengah -->
@@ -72,7 +114,7 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
    </div>
   </div>
 
-  <!-- Player YouTube tersembunyi -->
+ <!-- Player YouTube tersembunyi -->
   <div id="yt-player"></div>
 
   <!-- Script YouTube API -->
@@ -85,12 +127,8 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
       player = new YT.Player('yt-player', {
         height: '0',
         width: '0',
-        videoId: 'sXfDLuzSY-Y', // ID video instrumen Rumah ke Rumah
-        playerVars: {
-          autoplay: 0,
-          loop: 1,
-          playlist: 'sXfDLuzSY-Y'
-        }
+        videoId: 'sXfDLuzSY-Y',
+        playerVars: { autoplay: 0, loop: 1, playlist: 'sXfDLuzSY-Y' }
       });
     }
 
@@ -106,6 +144,24 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
         isPlaying = false;
       }
     }
+
+    // 🌸 Script animasi kelopak gugur
+    const colors = ["pink", "violet", "yellow", "lightgreen"];
+    const container = document.getElementById("petal-container");
+
+    function createPetal() {
+      const petal = document.createElement("div");
+      petal.classList.add("petal");
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.animationDuration = 6 + Math.random() * 5 + "s";
+      petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+      container.appendChild(petal);
+
+      setTimeout(() => { petal.remove(); }, 12000);
+    }
+
+    setInterval(createPetal, 400); // tiap 0.4 detik muncul kelopak baru
   </script>
 </body>
 </html>
