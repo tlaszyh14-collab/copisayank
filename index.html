@@ -136,6 +136,7 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
       const btn = document.getElementById("music-btn");
       if (!isPlaying) {
         player.playVideo();
+        player.unMute();  // ⬅️ ini yang penting
         btn.textContent = "⏸️ Jeda Musik";
         isPlaying = true;
       } else {
@@ -144,6 +145,7 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
         isPlaying = false;
       }
     }
+
 
     // 🌸 Script animasi kelopak gugur
     const colors = ["pink", "violet", "yellow", "lightgreen"];
@@ -172,4 +174,5 @@ function createPetal() {
   </script>
 </body>
 </html>
+
 
