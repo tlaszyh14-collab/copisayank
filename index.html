@@ -129,7 +129,7 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
    </div>
   </div>
 
-  <!-- Player YouTube tersembunyi -->
+ <!-- Player YouTube tersembunyi -->
   <div id="yt-player"></div>
 
   <!-- Script YouTube API -->
@@ -137,18 +137,26 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
   <script>
     let player;
     let isPlaying = false;
+    let isReady = false;
 
     function onYouTubeIframeAPIReady() {
       player = new YT.Player('yt-player', {
         height: '0',
         width: '0',
-        videoId: 'sXfDLuzSY-Y', // ✨ versi instrumental
-        playerVars: { autoplay: 0, loop: 1, playlist: 'sXfDLuzSY-Y' }
+        videoId: 'sXfDLuzSY-Y', // ID lagu instrumental
+        playerVars: { autoplay: 0, loop: 1, playlist: 'sXfDLuzSY-Y' },
+        events: {
+          onReady: () => { isReady = true; }
+        }
       });
     }
 
     function toggleMusic() {
       const btn = document.getElementById("music-btn");
+      if (!isReady) {
+        alert("Musik belum siap, tunggu sebentar ya 🌸");
+        return;
+      }
       if (!isPlaying) {
         player.playVideo();
         btn.textContent = "⏸️ Jeda Musik";
@@ -180,6 +188,7 @@ Dulu waktu tk, aku pernah gigit lengan teman aku soalnya aku kd suka sm iny. kd 
   </script>
 </body>
 </html>
+
 
 
 
